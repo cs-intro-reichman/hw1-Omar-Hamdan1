@@ -9,9 +9,51 @@ public class TimeFormat {
 		// It concatenates the empty string "" with the leftmost hour-digit. 
 		// It then concatenates the resulting string with the rightmost hour-digit,
 		// and then uses parseInt to cast the resulting string as an int.
-		int hours = Integer.parseInt("" + args[0].charAt(0) + args[0].charAt(1));
-		// Does the same with the minutes part of the input.
-		int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
-        // Replace this comment with the rest of your code
+		// Expect a single argument in the form "hh:mm" (24-hour clock)
+		if (args == null || args.length == 0) {
+			System.err.println("Usage: java TimeFormat hh:mm (24-hour)");
+			return;
+		}
+
+		String s = args[0];
+		if (s.length() != 5 || s.charAt(2) != ':') {
+			System.err.println("Input must be in hh:mm format (example: 12:50)");
+			return;
+		}
+
+		int hours;
+		int minutes;
+		try {
+			hours = Integer.parseInt("" + s.charAt(0) + s.charAt(1));
+			minutes = Integer.parseInt("" + s.charAt(3) + s.charAt(4));
+		} catch (NumberFormatException e) {
+			System.err.println("Invalid numeric time");
+			return;
+		}
+
+		if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+			System.err.println("Time out of range");
+			return;
+		}
+
+		String period;
+		int displayHour;
+		if (hours == 0) {
+			displayHour = 12;
+			period = "AM";
+		} else if (hours < 12) {
+			displayHour = hours;
+			period = "AM";
+		} else if (hours == 12) {
+			displayHour = 12;
+			period = "PM";
+		} else {
+			displayHour = hours - 12;
+			period = "PM";
+		}
+
+		// Ensure minutes are two digits
+		String minStr = String.format("%02d", minutes);
+		System.out.println(displayHour + ":" + minStr + " " + period);
 	}
 }
