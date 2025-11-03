@@ -39,7 +39,7 @@ public class TimeFormat {
 		String period;
 		int displayHour;
 		if (hours == 0) {
-			displayHour = 12;
+			displayHour = 0;
 			period = "AM";
 		} else if (hours < 12) {
 			displayHour = hours;

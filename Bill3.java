@@ -4,10 +4,10 @@ public class Bill3 {
 		// To get you started, here is the first line in the program:
 	    // Replace this comment with the rest of your code
 		System.out.println("Splitting a restaurant bill evenly among three diners.");
-	    String name1 = System.console().readLine("Enter the first diner's name: ");
-	    String name2 = System.console().readLine("Enter the second diner's name: ");
-	    String name3 = System.console().readLine("Enter the third diner's name: ");
-		int bill = Integer.parseInt(System.console().readLine("Enter the total bill amount (in dollars): "));
+	    String name1 = args[0];
+	    String name2 = args[1];
+	    String name3 = args[2];
+		int bill = Integer.parseInt(args[3]);
 		System.out.println("Dear " + name1 + ", " + name2 + " and " + name3 + ", each pays $" + (bill / 3) + ".");
 	}
 }
