@@ -2,7 +2,7 @@
 public class NumWords {
 	public static void main(String args[]) {
 	    // Replace this comment with your code
-		int number = Integer.parseInt(System.console().readLine("Enter a number between 0 and 999: "));
+		int number = Integer.parseInt(args[0]);
 		if (number < 0 || number > 999) {
 			System.out.println("Number out of range.");
 			return;
